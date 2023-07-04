@@ -1,12 +1,14 @@
 <div align="center">
 
-# asdf-prune [![Build](https://github.com/apotterri/asdf-prune/actions/workflows/build.yml/badge.svg)](https://github.com/apotterri/asdf-prune/actions/workflows/build.yml) [![Lint](https://github.com/apotterri/asdf-prune/actions/workflows/lint.yml/badge.svg)](https://github.com/apotterri/asdf-prune/actions/workflows/lint.yml)
+# asdf-prune [![Build](https://github.com/apotterri/asdf-prune/actions/workflows/build.yml/badge.svg)](https://github.com/apotterri/asdf-prune/actions/workflows/build.yml) [![Lint](https://github.com/apotterri/asdf-prune/actions/workflows/lint.yml/badge.svg)](https://github.com/apotterri/asdf-prune/actions/workflows/lint.yml) <!-- omit in toc -->
 
 [prune](https://github.com/apotterri/asdf-prune) plugin for the [asdf version manager](https://asdf-vm.com).
 
+It does only what I need it to, and nothing more. You probably shouldn't use it without looking at [how it works](lib/commands/command.bash).
+
 </div>
 
-# Contents
+# Contents <!-- omit in toc -->
 
 - [Dependencies](#dependencies)
 - [Install](#install)
@@ -15,10 +17,7 @@
 
 # Dependencies
 
-**TODO: adapt this section**
-
-- `bash`, `curl`, `tar`: generic POSIX utilities.
-- `SOME_ENV_VAR`: set this environment variable in your shell config to load the correct version of tool x.
+- `getopt`: the linux/GNU version of getopt. On macOS, expects to find it in `$(brew --prefix)/opt/gnu-getopt`
 
 # Install
 
@@ -33,17 +32,12 @@ asdf plugin add prune https://github.com/apotterri/asdf-prune.git
 prune:
 
 ```shell
-# Show all installable versions
-asdf list-all prune
+% asdf prune --help
+  Usage: prune [-n[--help] [--dry-run] <language> <version>
+  Uninstall all old (i.e. not latest) matching versions of language.
 
-# Install specific version
-asdf install prune latest
-
-# Set a version globally (on your ~/.tool-versions file)
-asdf global prune latest
-
-# Now prune commands are available
-prune --help
+  --dry-run -n  Show uninstall commands that would be run
+  --help    -h  This help
 ```
 
 Check [asdf](https://github.com/asdf-vm/asdf) readme for more instructions on how to
