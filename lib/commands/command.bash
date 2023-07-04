@@ -60,8 +60,11 @@ else
 fi
 
 latest=$(asdf latest $language $version)
-others=$(asdf list  $language $version | grep -v $latest)
+versions=$(asdf list $language $version)
 
-for o in $others; do
-  $dry_run asdf uninstall $language $o
+for v in $versions; do
+  [[ $v == $latest ]] && continue
+  set -x
+  $dry_run asdf uninstall $language $v
+  set +x
 done
